@@ -1,0 +1,7 @@
+{
+  "name": "life-planner-connector",
+  "private": true,
+  "description": "Chrome extension for Life Planner. Nothing here is needed to use it; this is only for running the tests.",
+  "scripts": { "test": "TZ=Australia/Melbourne node test/parse.test.js" },
+  "devDependencies": { "jsdom": "^24.0.0" }
+}

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header><img src="icons/icon32.png" alt=""><h1>Life Planner Connector</h1></header>
+  <p id="planner" class="status">Checking for the planner…</p>
+  <p id="counts" class="muted"></p>
+  <div class="buttons">
+    <button id="check" class="primary">Check this site now</button>
+    <button id="page">Add this page</button>
+    <button id="send">Send to planner</button>
+  </div>
+  <p id="msg" class="muted"></p>
+  <h2>Coming up</h2>
+  <ul id="list"><li class="muted">Nothing yet. Open myWestbourne or Teams and it'll fill in.</li></ul>
+  <h2>Activities</h2>
+  <p id="acts" class="muted">Open Strava or Garmin Connect and your recent activities come across.</p>
+  <script src="popup.js"></script>
+</body>
+</html>
