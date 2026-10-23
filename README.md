@@ -16,8 +16,13 @@ computer (`http://127.0.0.1:47823`). If the planner isn't open, it keeps
 everything and sends it the next time the planner is running (it tries every
 5 minutes).
 
-You need **Life Planner 2.10** for myWestbourne, and the version after 2.10 for
-Teams, Strava, Garmin and Health & sleep.
+You need **Life Planner 2.11** or newer.
+
+On a computer where extensions are blocked (like a school-managed laptop), you
+can still get Garmin activities, sleep, steps and resting heart rate by
+connecting intervals.icu in the planner (Training & Arena → Plan →
+Auto-import from Garmin), and SACs and Teams assignments come in through the
+planner's school email check.
 
 ## How each site works
 
