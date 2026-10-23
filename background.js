@@ -4,7 +4,8 @@
    http://127.0.0.1:47823. The planner only runs while it's open, so when it
    isn't, everything waits here and goes across on the next try (every 5
    minutes, or "Send to planner" in the popup). */
-const PLANNER = 'http://127.0.0.1:47823/api/westbourne';
+const PLANNER = 'http://127.0.0.1:47823/api/portal';
+const PLANNER_OLD = 'http://127.0.0.1:47823/api/westbourne'; // Life Planner 2.10
 const ACTS = 'http://127.0.0.1:47823/api/browser/activities';
 const HEALTH = 'http://127.0.0.1:47823/api/browser/health';
 const DAY = 86400000;
@@ -88,7 +89,8 @@ function send() {
     const list = Object.values(items).map(({ firstSeen, lastSeen, ...x }) => x);
     const post = (url, body) => fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     try {
-      const r = await post(PLANNER, { items: list });
+      let r = await post(PLANNER, { items: list });
+      if (r.status === 404 || r.status === 403) r = await post(PLANNER_OLD, { items: list });
       if (!r.ok) throw new Error(`planner said ${r.status}`);
       const r2 = await post(ACTS, { items: Object.values(acts) });
       if (!r2.ok) throw new Error(r2.status === 404 || r2.status === 403 ? 'Update Life Planner to get Strava and Garmin' : `planner said ${r2.status}`);
@@ -110,7 +112,8 @@ function send() {
 
 async function plannerUp() {
   try {
-    const r = await fetch(PLANNER, { cache: 'no-store' });
+    let r = await fetch(PLANNER, { cache: 'no-store' });
+    if (r.status === 404) r = await fetch(PLANNER_OLD, { cache: 'no-store' });
     const j = await r.json();
     return j.app === 'life-planner' ? j : null;
   } catch { return null; }
